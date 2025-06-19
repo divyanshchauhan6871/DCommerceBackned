@@ -7,7 +7,6 @@ import JWT from "jsonwebtoken";
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, phone, address, answer } = req.body;
-    // validating user
     if (!name) {
       res.send({ error: "name is required" });
     }
@@ -26,7 +25,6 @@ export const registerController = async (req, res) => {
     if (!answer) {
       res.send({ error: "answer is required" });
     }
-    // checking for the unique user
     const existinguser = await userModels.findOne({ email: email });
     if (existinguser) {
       return res.status(200).send({
